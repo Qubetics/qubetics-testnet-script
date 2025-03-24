@@ -1,4 +1,4 @@
-# qubetics-join-testnet-script
+# qubetics-testnet-script
 
 This repository provides ubuntu 22 script for running a node on qubetics testnet:
 
@@ -10,7 +10,7 @@ System Requirements:
 - Network: Stable internet connection
 
 Clone this repo using:
-git clone '<https://github.com/Qubetics/qubetics-join-testnet>'
+git clone '<https://github.com/Qubetics/qubetics-testnet-script>'
 
 Setup the node:
 open a terminal window and run the following command :
