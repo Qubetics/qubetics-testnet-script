@@ -59,6 +59,18 @@ LOGLEVEL="info"
 # Set dedicated home directory for the qubeticsd instance
  HOMEDIR="/data/.tmp-qubeticsd"
 
+
+# Check if the service is running
+if systemctl is-active --quiet qubeticschain.service; then
+    echo "Service is running. Stopping and removing it."
+    
+    sudo systemctl stop qubeticschain.service
+    sudo rm -rf "$HOMEDIR"
+    sudo rm -rf /etc/systemd/system/qubeticschain.service
+else
+    echo "Service is not running. Skipping removal steps."
+fi
+
 # Path variables
 CONFIG=$HOMEDIR/config/config.toml
 APP_TOML=$HOMEDIR/config/app.toml
