@@ -159,7 +159,9 @@ else
 fi
 
 mkdir -p "${GOPATH}/"{src,pkg,bin}
-echo -e "\nGo $VERSION was installed into $GOROOT.\nMake sure to relogin into your shell or run:"
-echo -e "\n\tsource $shell_profile\n\nto update your environment variables."
-echo "Tip: Opening a new terminal window usually just works. :)"
+echo -e "\nGo $VERSION was installed into $GOROOT.\n"
+echo -e "\nApplying environment variables now..."
+# Source shell profile to apply exports in current script session
+    source "$shell_profile"
+    echo "Environment variables loaded."
 rm -f "$TEMP_DIRECTORY/go.tar.gz"

@@ -12,6 +12,9 @@ source $HOME/.bashrc
 ulimit -n 16384
 
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+# Determine the path of cosmovisor
+COSMOVISOR_PATH=$(which cosmovisor)
+echo "Cosmovisor is installed at: $COSMOVISOR_PATH"
 
 # Get OS and version
 OS=$(awk -F '=' '/^NAME/{print $2}' /etc/os-release | awk '{print $1}' | tr -d '"')
@@ -22,8 +25,8 @@ BINARY="qubeticsd"
 INSTALL_PATH="/usr/local/bin/"
 #  INSTALL_PATH="/root/go/bin/"
 
-# Check if the OS is Ubuntu and the version is either 20.04 or 22.04
-if [ "$OS" == "Ubuntu" ] && [ "$VERSION" == "24.04" -o "$VERSION" == "22.04" ]; then
+# Check if the OS is Ubuntu and the version is either 22.04 or 24.04
+if [ "$OS" == "Ubuntu" ] && [ "$VERSION" == "22.04" -o "$VERSION" == "24.04" ]; then
   # Copy and set executable permissions
   current_path=$(pwd)
   
@@ -229,7 +232,7 @@ After=network-online.target
 User=$(whoami)
 Group=$(whoami)
 Type=simple
-ExecStart=/home/$(whoami)/go/bin/cosmovisor run start --home $DAEMON_HOME
+ExecStart=$COSMOVISOR_PATH run start --home $DAEMON_HOME
 Restart=always
 RestartSec=3
 LimitNOFILE=4096
